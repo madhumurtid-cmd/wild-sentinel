@@ -1,0 +1,718 @@
+========================================================
+             WILD SENTINEL V0.9
+       COMPETING HYPOTHESES ENGINE
+========================================================
+
+ADVERSARIAL TEST
+
+The leopard initially travels diagonally.
+
+At approximately 20 minutes it changes behaviour
+while the direct sensor is blind.
+
+Wild Sentinel does NOT know which behaviour occurred.
+
+Instead of maintaining one trajectory, the engine
+must maintain competing hypotheses:
+
+    H1  CONTINUE ORIGINAL TRAJECTORY
+    H2  CHANGE DIRECTION
+    H3  SLOW / STOP
+    H4  UNKNOWN MOVEMENT
+
+Each hypothesis has:
+
+    Position estimate
+    Velocity estimate
+    Direction
+    Uncertainty
+    Confidence
+    Evidence support
+    Probability weight
+
+========================================================
+
+CORE PRINCIPLE
+
+Wild Sentinel must NOT ask:
+
+    "Where is the leopard?"
+
+It must ask:
+
+    "Where could the leopard plausibly be?"
+
+and then:
+
+    "Which human routes remain safe
+     across those plausible futures?"
+
+========================================================
+
+
+--------------------------------------------------------------------
+00 min
+  Actual leopard: ( 15.0,  85.0)
+  Sensor: BLIND
+
+  HYPOTHESES
+
+  H1 CONTINUE
+      Position: UNKNOWN
+      Confidence: 0.0%
+
+  H2 TURN
+      Position: UNKNOWN
+      Confidence: 0.0%
+
+  H3 SLOW / STOP
+      Position: UNKNOWN
+      Confidence: 0.0%
+
+  H4 UNKNOWN
+      Position: UNKNOWN
+      Confidence: 0.0%
+
+  Overall uncertainty: 35.0
+
+  ROUTE SAFETY
+
+  ROUTE A
+      State: UNKNOWN
+      Worst-case separation: UNKNOWN
+      Confidence: 0.0%
+
+  ROUTE B
+      State: UNKNOWN
+      Worst-case separation: UNKNOWN
+      Confidence: 0.0%
+
+  ROUTE C
+      State: UNKNOWN
+      Worst-case separation: UNKNOWN
+      Confidence: 0.0%
+
+  ⚠️ SAFETY DECISION
+  No sufficiently reliable safe route.
+
+  >>> RECOMMENDATION: WAIT / DO NOT ENTER
+
+
+--------------------------------------------------------------------
+05 min
+  Actual leopard: ( 22.2,  77.8)
+  Sensor: BLIND
+
+  HYPOTHESIS INITIALISATION
+
+  H1 CONTINUE
+      Confidence: 25.0%
+
+  H2 TURN
+      Confidence: 25.0%
+
+  H3 SLOW / STOP
+      Confidence: 25.0%
+
+  H4 UNKNOWN
+      Confidence: 25.0%
+
+  No direct observation available.
+
+  >>> All hypotheses remain plausible.
+
+
+--------------------------------------------------------------------
+10 min
+  Actual leopard: ( 29.5,  70.5)
+  Sensor: VISIBLE
+
+  DIRECT OBSERVATION
+      Position: (29.5, 70.5)
+
+  MOVEMENT MODEL INITIALISED
+
+  H1 CONTINUE
+      Direction: DIAGONAL
+      Confidence: 85.7%
+
+  H2 TURN
+      Confidence: 5.0%
+
+  H3 SLOW / STOP
+      Confidence: 5.0%
+
+  H4 UNKNOWN
+      Confidence: 4.3%
+
+  🔎 HYPOTHESIS STATE
+      Dominant hypothesis: H1 CONTINUE
+      Alternative hypotheses retained: YES
+
+  ROUTE ANALYSIS
+
+  ROUTE A
+      H1 risk: LOW
+      H2 risk: LOW
+      H3 risk: LOW
+      H4 risk: UNKNOWN
+
+      Overall state: UNKNOWN
+
+  ROUTE B
+      H1 risk: CRITICAL
+      H2 risk: POTENTIAL
+      H3 risk: LOW
+      H4 risk: UNKNOWN
+
+      Overall state: CRITICAL
+
+  ROUTE C
+      H1 risk: POTENTIAL
+      H2 risk: LOW
+      H3 risk: LOW
+      H4 risk: UNKNOWN
+
+      Overall state: POTENTIAL EXPOSURE
+
+  🚨 WILDLIFE WARNING
+      ROUTE B cannot be considered safe.
+
+  >>> RECOMMENDATION: WAIT / DO NOT ENTER
+
+
+--------------------------------------------------------------------
+15 min
+  Actual leopard: (36.8, 63.2)
+  Sensor: VISIBLE
+
+  🔎 HYPOTHESIS UPDATE
+
+  Observation is consistent with:
+
+      H1 CONTINUE
+
+  H1 confidence increases.
+
+      H1 CONTINUE: 91.0%
+      H2 TURN:       3.0%
+      H3 SLOW:       2.0%
+      H4 UNKNOWN:    4.0%
+
+  Prediction validation:
+      Forecast error: 0.0
+      Divergence: NONE
+
+  MODEL STATE:
+      STABLE
+
+  ROUTE A
+      Overall state: SAFE
+      Worst plausible separation: 30.8
+
+  ROUTE B
+      Overall state: CRITICAL
+      Worst plausible separation: 0.2
+
+  ROUTE C
+      Overall state: POTENTIAL EXPOSURE
+      Worst plausible separation: 22.8
+
+  🚨 WARNING
+      ROUTE B
+
+  >>> RECOMMENDATION: ROUTE A
+
+
+--------------------------------------------------------------------
+20 min
+  Actual leopard: (44.0, 56.0)
+  Sensor: BLIND
+
+  ⚠️ SENSOR BLINDNESS
+
+  H1 CONTINUE
+      Predicted position: (44.0, 56.0)
+      Confidence: 70.0%
+
+  H2 TURN
+      Predicted position: uncertain
+      Confidence: 10.0%
+
+  H3 SLOW / STOP
+      Predicted position: uncertain
+      Confidence: 10.0%
+
+  H4 UNKNOWN
+      Predicted region: wide
+      Confidence: 10.0%
+
+  Evidence:
+
+      Movement anomaly:       0.0
+      Sensor disturbance:     0.0
+      Activity anomaly:       0.0
+
+  HYPOTHESIS STATE:
+
+      H1 remains dominant.
+
+  IMPORTANT:
+
+      Dominant != certain.
+
+      Alternative futures remain active.
+
+
+--------------------------------------------------------------------
+25 min
+  Actual leopard: (52.4, 57.6)
+  Sensor: BLIND
+
+  🔎 INDIRECT EVIDENCE
+
+      Movement anomaly:       0.0
+      Sensor disturbance:    25.0
+      Prey/activity anomaly: 55.0
+      Environmental context:  0.0
+      Human movement:         0.0
+
+      Evidence score: 16.0
+
+  HYPOTHESIS UPDATE
+
+      H1 CONTINUE
+          Confidence: 58.0%
+
+      H2 TURN
+          Confidence: 22.0%
+
+      H3 SLOW / STOP
+          Confidence: 8.0%
+
+      H4 UNKNOWN
+          Confidence: 12.0%
+
+  ⚠️ H2 GAINING SUPPORT
+
+  The engine does NOT switch models.
+
+  It expands the plausible future set.
+
+  ROUTE DECISION:
+
+      Any route safe only under H1
+      must NOT be classified as SAFE.
+
+
+--------------------------------------------------------------------
+30 min
+  Actual leopard: (60.4, 59.2)
+  Sensor: BLIND
+
+  🔎 INDIRECT EVIDENCE
+
+      Movement anomaly:       25.0
+      Sensor disturbance:     35.0
+      Prey/activity anomaly:  55.0
+      Environmental context: 60.0
+      Human movement:         70.0
+
+      Evidence fusion: 49.0
+
+  HYPOTHESIS UPDATE
+
+      H1 CONTINUE
+          Confidence: 35.0%
+
+      H2 TURN
+          Confidence: 43.0%
+
+      H3 SLOW / STOP
+          Confidence: 7.0%
+
+      H4 UNKNOWN
+          Confidence: 15.0%
+
+  ⚠️ HYPOTHESIS COMPETITION
+
+      H2 is now dominant.
+
+      BUT:
+
+      H1 remains plausible.
+      H4 remains plausible.
+
+  Therefore:
+
+      Wild Sentinel must NOT behave
+      as though H2 is confirmed.
+
+  ROUTE SAFETY:
+
+      ROUTE A
+          Safe under H1
+          Safe under H2
+          Unknown under H4
+
+          Overall: UNKNOWN
+
+      ROUTE B
+          Dangerous under H1
+          Potential under H2
+          Unknown under H4
+
+          Overall: AVOID
+
+      ROUTE C
+          Variable risk
+
+          Overall: CAUTION
+
+
+  ⚠️ SAFETY DECISION
+
+  Competing futures prevent reliable
+  route certification.
+
+  >>> RECOMMENDATION: WAIT / DO NOT ENTER
+
+
+--------------------------------------------------------------------
+35 min
+  Actual leopard: (68.6, 55.4)
+  Sensor: BLIND
+
+  🔎 INDIRECT EVIDENCE
+
+      Movement anomaly:       65.0
+      Sensor disturbance:     70.0
+      Prey/activity anomaly:  55.0
+      Environmental context:  60.0
+      Human movement:         70.0
+
+      Evidence fusion: 64.2
+
+  HYPOTHESIS UPDATE
+
+      H1 CONTINUE
+          Confidence: 18.0%
+
+      H2 TURN
+          Confidence: 61.0%
+
+      H3 SLOW / STOP
+          Confidence: 5.0%
+
+      H4 UNKNOWN
+          Confidence: 16.0%
+
+  ⚠️ BEHAVIOUR CHANGE SUSPECTED
+
+  H2 is now dominant.
+
+  BUT:
+
+      H1 has NOT been deleted.
+      H4 has NOT been deleted.
+
+  This is critical.
+
+  Wild Sentinel does NOT say:
+
+      "The leopard turned."
+
+  It says:
+
+      "The TURN hypothesis is now strongly
+       supported by available evidence."
+
+  ROUTE SAFETY:
+
+      ROUTE A
+          H1: SAFE
+          H2: POTENTIAL
+          H4: UNKNOWN
+
+          Overall: UNKNOWN
+
+      ROUTE B
+          H1: CRITICAL
+          H2: POTENTIAL
+          H4: UNKNOWN
+
+          Overall: AVOID
+
+      ROUTE C
+          H1: SAFE
+          H2: SAFE
+          H4: UNKNOWN
+
+          Overall: UNKNOWN
+
+
+  ⚠️ SAFETY DECISION
+
+  No route satisfies the safety threshold
+  across the plausible hypothesis set.
+
+  >>> RECOMMENDATION: WAIT / DO NOT ENTER
+
+
+--------------------------------------------------------------------
+40 min
+  Actual leopard: (76.8, 55.2)
+  Sensor: VISIBLE
+
+  📡 DIRECT OBSERVATION
+
+      Position: (76.8, 55.2)
+
+  HYPOTHESIS VALIDATION
+
+      H1 CONTINUE
+          Predicted position:
+              (73.0, 27.0)
+
+          Error:
+              28.5+
+
+          Status:
+              REJECTED
+
+      H2 TURN
+          Predicted position:
+              CLOSE TO OBSERVATION
+
+          Error:
+              LOW
+
+          Status:
+              VALIDATED
+
+      H3 SLOW / STOP
+          Error:
+              HIGH
+
+          Status:
+              REJECTED
+
+      H4 UNKNOWN
+          Status:
+              NOT REQUIRED
+
+  ======================================================
+
+  🧠 HYPOTHESIS RESOLUTION
+
+      H1 CONTINUE        REJECTED
+      H2 TURN            VALIDATED
+      H3 SLOW / STOP     REJECTED
+      H4 UNKNOWN         REDUCED
+
+  ======================================================
+
+  BEHAVIOUR STATE:
+
+      CONFIRMED DIRECTION CHANGE
+
+  MODEL STATE:
+
+      OLD MODEL INVALIDATED
+
+  🔄 MODEL REBUILD
+
+      New position:
+          (76.8, 55.2)
+
+      New movement vector:
+          CALCULATED
+
+      New trajectory:
+          INITIALISED
+
+      Previous trajectory:
+          RETIRED
+
+  ======================================================
+
+  ROUTE RISK RE-EVALUATION
+
+  ROUTE A
+      State: NEAR
+      Minimum separation: 11.9
+      Confidence: HIGH
+
+  ROUTE B
+      State: NO ENCOUNTER
+      Minimum separation: 24.9
+      Confidence: HIGH
+
+  ROUTE C
+      State: NO ENCOUNTER
+      Minimum separation: 53.9
+      Confidence: HIGH
+
+  >>> RECOMMENDATION: ROUTE B
+
+
+--------------------------------------------------------------------
+45 min
+  Actual leopard: (85.0, 55.0)
+  Sensor: VISIBLE
+
+  DIRECT OBSERVATION
+
+      Position: (85.0, 55.0)
+
+  HYPOTHESIS STATE
+
+      H1 CONTINUE
+          RETIRED
+
+      H2 TURN
+          88.0%
+
+      H3 SLOW / STOP
+          3.0%
+
+      H4 UNKNOWN
+          9.0%
+
+  MODEL STATE:
+
+      REBUILT / TRACKING
+
+  Prediction error:
+      LOW
+
+  Divergence:
+      NONE
+
+  ROUTE ANALYSIS:
+
+  ROUTE A
+      State: NEAR
+
+  ROUTE B
+      State: NO ENCOUNTER
+
+  ROUTE C
+      State: NO ENCOUNTER
+
+  >>> RECOMMENDATION: ROUTE B
+
+
+========================================================
+                 V0.9 TEST COMPLETE
+========================================================
+
+
+VALIDATION
+
+    [✓] Multiple wildlife hypotheses
+
+    [✓] Hypothesis probabilities
+
+    [✓] Alternative trajectories retained
+
+    [✓] Sensor blindness
+
+    [✓] Confidence decay
+
+    [✓] Indirect evidence updates hypotheses
+
+    [✓] Dominant hypothesis != confirmed hypothesis
+
+    [✓] Route risk evaluated against
+        competing futures
+
+    [✓] Unsafe hypotheses cannot be ignored
+
+    [✓] Direct observation resolves hypotheses
+
+    [✓] Failed hypotheses retired
+
+    [✓] Valid hypothesis becomes new model
+
+    [✓] Route risk recalculated
+
+    [✓] Conservative safety decision
+
+
+========================================================
+                 V0.9 PRINCIPLE
+========================================================
+
+V0.8:
+
+    "Something may have changed."
+
+V0.9:
+
+    "There are several plausible explanations
+     for what may have changed."
+
+Therefore Wild Sentinel maintains:
+
+       H1 ────────────────┐
+                          │
+       H2 ────────────────┼──> FUTURE RISK
+                          │
+       H3 ────────────────┤
+                          │
+       H4 ────────────────┘
+
+Instead of:
+
+       ONE PREDICTION
+            ↓
+       ONE ROUTE DECISION
+
+
+========================================================
+
+CRITICAL SAFETY RULE
+
+A route is NOT SAFE merely because:
+
+       "the most probable hypothesis
+        says it is safe."
+
+A route can only be considered SAFE when:
+
+       the plausible dangerous hypotheses
+       have sufficiently low risk,
+
+       AND
+
+       uncertainty is sufficiently low.
+
+
+========================================================
+
+NEXT: V0.9.1
+========================================================
+
+V0.9.1 should introduce:
+
+       HYPOTHESIS MEMORY
+
+The engine should remember:
+
+    which hypotheses were correct
+    which failed
+    how quickly behaviour changed
+    how long animals remained on altered paths
+    which indirect signals preceded changes
+
+This creates the beginning of:
+
+       BEHAVIOURAL MEMORY
+
+rather than simply trajectory prediction.
+
+And that is where Wild Sentinel starts becoming
+something much more interesting than a tracking system.
+
+========================================================
